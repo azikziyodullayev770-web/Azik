@@ -32,7 +32,7 @@ export function HouseCard({ listing, index, isFavorite, onToggleFavorite, onClic
         
         {/* Badges */}
         <div className="absolute top-5 left-5 flex gap-2">
-          {listing.price > 300 && (
+          {(listing.price ?? 0) > 300 && (
             <div className="px-3 py-1 bg-accent-gold text-black text-[9px] font-black rounded-lg flex items-center gap-1 shadow-xl">
               <Star size={10} fill="currentColor" /> TOP
             </div>
