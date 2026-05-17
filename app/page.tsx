@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Search, MapPin, ChevronRight, Bell, Home, 
   MessageCircle, PlusCircle, User, Heart, ArrowLeft, Ghost, Phone, Send, Camera,
-  Star, Ruler, BedDouble, Check, Info, Loader2, Zap, Wifi, Flame, Droplet, Thermometer, Wind,
+  Star, Ruler, BedDouble, Check, Info, LoaderCircle, Zap, Wifi, Flame, Droplet, Thermometer, Wind,
   Shield, LogOut, Clock, XCircle, Megaphone, Trash2, Edit3, Brain,
   Lock, Settings, Sparkles, Layers, Languages
 } from 'lucide-react'
@@ -587,7 +587,7 @@ function AddListingView({ onBack, onPublish, userId }: { onBack: () => void; onP
           disabled={loading} 
           className={`flex-[2] py-5 rounded-2xl bg-white text-black font-black uppercase text-[10px] flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50`}
         >
-          {loading ? <Loader2 size={14} className="animate-spin" /> : (step === 4 ? "Tugatish" : "Keyingisi")} 
+          {loading ? <LoaderCircle size={14} className="animate-spin" /> : (step === 4 ? "Tugatish" : "Keyingisi")} 
           {!loading && <ChevronRight size={14}/>}
         </button>
       </div>
@@ -628,7 +628,7 @@ function ChatDetailView({ chat, onBack, userId }: { chat: Chat; onBack: () => vo
   return (
     <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="fixed inset-0 z-[100] bg-black flex flex-col">
       <header className="p-6 glass border-b border-white/5 flex items-center gap-4"><button onClick={onBack} className="p-3 rounded-full glass"><ArrowLeft size={20}/></button><h3 className="font-bold">{chat.partnerName}</h3></header>
-      <div className="flex-1 p-6 space-y-4 overflow-y-auto">{loading ? <Loader2 className="animate-spin" /> : messages.map(m => <div key={m.id} className={`flex ${m.sender_id === userId ? 'justify-end' : 'justify-start'}`}><div className={`max-w-[80%] p-4 rounded-2xl ${m.sender_id === userId ? 'bg-accent-blue text-black' : 'glass border-white/5'}`}>{m.content}</div></div>)}</div>
+      <div className="flex-1 p-6 space-y-4 overflow-y-auto">{loading ? <LoaderCircle className="animate-spin" /> : messages.map(m => <div key={m.id} className={`flex ${m.sender_id === userId ? 'justify-end' : 'justify-start'}`}><div className={`max-w-[80%] p-4 rounded-2xl ${m.sender_id === userId ? 'bg-accent-blue text-black' : 'glass border-white/5'}`}>{m.content}</div></div>)}</div>
       <div className="p-6 glass flex gap-3"><input type="text" value={msg} onChange={e => setMsg(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()} className="flex-1 bg-neutral-900 rounded-2xl p-4 text-sm" placeholder="Xabar..." /><button onClick={send} className="p-4 bg-accent-blue text-black rounded-2xl"><Send size={20}/></button></div>
     </motion.div>
   )
@@ -1138,7 +1138,7 @@ export default function UYJOYPlatform() {
   }
 
   if (showSplash && loading) return <SplashScreen onComplete={() => setShowSplash(false)} />
-  if (loading) return <div className="flex items-center justify-center min-h-screen bg-black"><Loader2 className="animate-spin text-white" size={40} /></div>
+  if (loading) return <div className="flex items-center justify-center min-h-screen bg-black"><LoaderCircle className="animate-spin text-white" size={40} /></div>
 
   // Show login screen if not authenticated
   if (showAuth && !user) return (
@@ -1267,7 +1267,7 @@ export default function UYJOYPlatform() {
                   {!user ? (
                     <div className="h-[50vh] flex flex-col items-center justify-center text-center"><Ghost size={64} className="text-neutral-800 mb-6" /><h3 className="font-black text-xl mb-2">Tizimga kiring</h3><p className="text-xs text-neutral-500 uppercase tracking-widest">Suhbatlar uchun tizimga kirish kerak</p></div>
                   ) : chatsLoading ? (
-                    <div className="h-[50vh] flex items-center justify-center"><Loader2 className="animate-spin text-accent-blue" size={32} /></div>
+                    <div className="h-[50vh] flex items-center justify-center"><LoaderCircle className="animate-spin text-accent-blue" size={32} /></div>
                   ) : chats.length === 0 ? (
                     <div className="h-[50vh] flex flex-col items-center justify-center text-center"><MessageCircle size={64} className="text-neutral-800 mb-6" /><h3 className="font-black text-xl mb-2">Hozircha suhbat yo'q</h3><p className="text-xs text-neutral-500 uppercase tracking-widest">Xabarlar Supabase dan yuklanadi</p></div>
                   ) : chats.map(c => <motion.div key={c.id} whileTap={{ scale: 0.98 }} onClick={() => setSelectedChat(c.id)} className="glass p-5 rounded-3xl mb-3 flex items-center gap-4 cursor-pointer border-white/5 hover:border-accent-blue/20 transition-all"><div className="relative"><div className="w-14 h-14 rounded-full bg-accent-blue/20 flex items-center justify-center"><User size={24} className="text-accent-blue" /></div><div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-black rounded-full shadow-[0_0_10px_#22c55e]" /></div><div className="flex-1"><h4 className="font-bold tracking-tight">{c.partnerName}</h4><p className="text-xs text-neutral-500 truncate leading-relaxed">{c.lastMsg}</p></div>{c.unread > 0 && <span className="bg-accent-blue text-black text-[10px] font-black px-2 py-1 rounded-full">{c.unread}</span>}<ChevronRight size={18} className="text-neutral-700"/></motion.div>)}
@@ -1288,7 +1288,7 @@ export default function UYJOYPlatform() {
           {activeTab === 'profile' && (
             <div key="profile" className="pt-24 px-4 text-center">
               {profileLoading ? (
-                <div className="h-[60vh] flex items-center justify-center"><Loader2 className="animate-spin text-accent-blue" size={32} /></div>
+                <div className="h-[60vh] flex items-center justify-center"><LoaderCircle className="animate-spin text-accent-blue" size={32} /></div>
               ) : !user ? (
                 <div className="h-[60vh] flex flex-col items-center justify-center text-center"><Ghost size={64} className="text-neutral-800 mb-6" /><h3 className="font-black text-xl mb-2">Tizimga kiring</h3><p className="text-xs text-neutral-500 uppercase tracking-widest">Profil uchun tizimga kirish kerak</p></div>
               ) : (
@@ -1703,7 +1703,7 @@ export default function UYJOYPlatform() {
                             disabled={savingProfile}
                             className={`flex-[2] py-4.5 rounded-2xl font-black uppercase text-[10px] tracking-widest transition-all active:scale-95 text-center flex items-center justify-center gap-2 ${ACCENT_STYLES[profileAccent].btn}`}
                           >
-                            {savingProfile ? <Loader2 size={12} className="animate-spin" /> : "Saqlash"}
+                            {savingProfile ? <LoaderCircle size={12} className="animate-spin" /> : "Saqlash"}
                           </button>
                         </div>
                       </div>

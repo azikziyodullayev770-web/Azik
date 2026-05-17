@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mail, Lock, User, Eye, EyeOff, Loader2, ArrowRight, Home } from 'lucide-react'
+import { Mail, Lock, User, Eye, EyeOff, LoaderCircle, ArrowRight, Home } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 interface AuthScreenProps {
@@ -216,7 +216,7 @@ export function AuthScreen({ onLogin, onSkip }: AuthScreenProps) {
           className="w-full mt-8 py-5 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-[11px] flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 shadow-2xl"
         >
           {loading ? (
-            <Loader2 size={18} className="animate-spin" />
+            <LoaderCircle size={18} className="animate-spin" />
           ) : (
             <>
               {mode === 'login' ? 'Kirish' : 'Ro\'yxatdan o\'tish'}
