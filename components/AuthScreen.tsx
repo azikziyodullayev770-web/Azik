@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mail, Lock, User, Eye, EyeOff, Loader, ArrowRight, Home } from 'lucide-react'
+import { Mail, Lock, User, Eye, EyeOff, Loader2, ArrowRight, Home } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 interface AuthScreenProps {
@@ -113,21 +113,19 @@ export function AuthScreen({ onLogin, onSkip }: AuthScreenProps) {
         <div className="flex gap-2 mb-8 glass rounded-2xl p-1.5">
           <button
             onClick={() => { setMode('login'); setError(''); setSuccess('') }}
-            className={`flex-1 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
-              mode === 'login'
+            className={`flex-1 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${mode === 'login'
                 ? 'bg-white text-black shadow-xl'
                 : 'text-neutral-500 hover:text-neutral-300'
-            }`}
+              }`}
           >
             Kirish
           </button>
           <button
             onClick={() => { setMode('register'); setError(''); setSuccess('') }}
-            className={`flex-1 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
-              mode === 'register'
+            className={`flex-1 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${mode === 'register'
                 ? 'bg-white text-black shadow-xl'
                 : 'text-neutral-500 hover:text-neutral-300'
-            }`}
+              }`}
           >
             Ro'yxatdan o'tish
           </button>
@@ -218,7 +216,7 @@ export function AuthScreen({ onLogin, onSkip }: AuthScreenProps) {
           className="w-full mt-8 py-5 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-[11px] flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 shadow-2xl"
         >
           {loading ? (
-            <Loader size={18} className="animate-spin" />
+            <Loader2 size={18} className="animate-spin" />
           ) : (
             <>
               {mode === 'login' ? 'Kirish' : 'Ro\'yxatdan o\'tish'}
